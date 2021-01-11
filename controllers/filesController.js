@@ -1,10 +1,10 @@
-const multer = require('multer');
+const multer = require("multer");
 const shortid = require("shortid");
-//const fs = require('fs');
+const fs = require("fs");
 const Links = require("../models/Link");
 
 exports.uploadFile = async (req, res, next) => {
-   const settingMulter = {
+  const settingMulter = {
     limits: { fileSize: req.user ? 1024 * 1024 * 10 : 1024 * 1024 },
     storage: (fileStorage = multer.diskStorage({
       destination: (req, file, cb) => {
@@ -18,11 +18,11 @@ exports.uploadFile = async (req, res, next) => {
         cb(null, `${shortid.generate()}${extension}`);
       },
     })),
-  }; 
+  };
 
   const upload = multer(settingMulter).single("documentFile");
 
-   upload(req, res, async (error) => {
+  upload(req, res, async (error) => {
     console.log(req.file);
 
     if (!error) {
@@ -31,10 +31,10 @@ exports.uploadFile = async (req, res, next) => {
       console.log(error);
       return next();
     }
-  }); 
+  });
 };
-/*
- exports.deleteFile = async (req, res) => {
+
+exports.deleteFile = async (req, res) => {
   console.log(req.file);
 
   try {
@@ -44,7 +44,6 @@ exports.uploadFile = async (req, res, next) => {
     console.log(error);
   }
 };
-*/
 
 exports.downloading = async (req, res, next) => {
   // getting the Link
@@ -66,4 +65,4 @@ exports.downloading = async (req, res, next) => {
     link.downloads--;
     await link.save();
   }
-}; 
+};
