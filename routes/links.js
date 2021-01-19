@@ -16,8 +16,8 @@ router.post(
 );
 
 router.get(
-  "/"
-  /* linksController.allLinks */
+  "/",
+   linksController.allLinks 
 );
 
 router.get(

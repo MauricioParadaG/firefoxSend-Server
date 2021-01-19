@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(" ")[1];
 
-     console.log(token);
+     //console.log(token);
 
     if (token) {
       try {

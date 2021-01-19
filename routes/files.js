@@ -8,7 +8,7 @@ router.post("/", auth, filesController.uploadFile);
 router.get(
   "/:file",
   filesController.downloading,
- // filesController.deleteFile
+  filesController.deleteFile
 );
 
 module.exports = router;
